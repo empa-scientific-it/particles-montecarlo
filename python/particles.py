@@ -450,7 +450,5 @@ T = int(time / dt)  # steps needed
 
 
 # In[67]:
-
-
-get_ipython().run_cell_magic('capture', 'cap --no-stderr', 'sourceFile = open("outputsimple.txt", "w")\nX = main(100e-6, None)  # diameter in [m], here: 150 um * 10-6 m/um\nsourceFile.close()\n# with open(\'output.txt\', \'w\') as f:\n#    f.write(cap.stdout)')
+# get_ipython().run_cell_magic('capture', 'cap --no-stderr', 'sourceFile = open("outputsimple.txt", "w")\nX = main(100e-6, None)  # diameter in [m], here: 150 um * 10-6 m/um\nsourceFile.close()\n# with open(\'output.txt\', \'w\') as f:\n#    f.write(cap.stdout)')
 
