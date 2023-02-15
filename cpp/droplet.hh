@@ -12,6 +12,9 @@ public:
     //! Get droplet state
     bool& getState() { return is_active; }
 
+    //! Set droplet state
+    void setState(const bool& new_state);
+
     void printself(std::ostream& stream) const override;
     void initself(std::istream& sstr) override;
 
