@@ -13,7 +13,7 @@ class SystemEvolution {
   /* ------------------------------------------------------------------------ */
 public:
   //! Construct using existing system (takes ownership)
-  SystemEvolution(std::unique_ptr<System> system);
+  explicit SystemEvolution(std::unique_ptr<System> system);
 
   /* ------------------------------------------------------------------------ */
   /* Methods                                                                  */

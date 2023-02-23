@@ -4,6 +4,7 @@
 #include "droplet.hh"
 
 /* -------------------------------------------------------------------------- */
+
 ComputeBoundary::ComputeBoundary(const Vector &box_min, const Vector &box_max)
     : box_min(box_min), box_max(box_max)
 {
@@ -52,6 +53,5 @@ void ComputeBoundary::compute(System &system)
                 throw std::runtime_error("Particle position outside the bounding box!");
         }
     }
-}
 
 /* -------------------------------------------------------------------------- */
