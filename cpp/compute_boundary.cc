@@ -19,11 +19,9 @@ ComputeBoundary::ComputeBoundary(const Vector &box_min, const Vector &box_max)
 
 /* -------------------------------------------------------------------------- */
 
-void ComputeBoundary::compute(System &system)
-{
+void ComputeBoundary::compute(System &system) {
     UInt num_particles = system.getNbParticles();
-    for (UInt np = 0; np < num_particles; ++np)
-    {
+    for (UInt np = 0; np < num_particles; ++np) {
         auto &par = dynamic_cast<Droplet &>(system.getParticle(np));
         auto &pos = par.getPosition();
         auto &vel = par.getVelocity();
@@ -53,5 +51,5 @@ void ComputeBoundary::compute(System &system)
                 throw std::runtime_error("Particle position outside the bounding box!");
         }
     }
-
+}
 /* -------------------------------------------------------------------------- */
