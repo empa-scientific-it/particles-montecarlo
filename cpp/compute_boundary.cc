@@ -1,4 +1,5 @@
 #include <cmath>
+#include <stdexcept>
 #include "compute_boundary.hh"
 #include "droplet.hh"
 
@@ -22,7 +23,7 @@ void ComputeBoundary::compute(System &system)
     UInt num_particles = system.getNbParticles();
     for (UInt np = 0; np < num_particles; ++np)
     {
-        auto &par = static_cast<Droplet &>(system.getParticle(np));
+        auto &par = dynamic_cast<Droplet &>(system.getParticle(np));
         auto &pos = par.getPosition();
         auto &vel = par.getVelocity();
         auto &is_active = par.getState();
@@ -37,21 +38,19 @@ void ComputeBoundary::compute(System &system)
         if (!is_active)
             break;
 
-        // reflect particle's velocity components
-        for (UInt i = 0; i < Vector::dim; ++i)
-        {
-            if (delta_max[i] < 0)
-            {
+        // updated particle's position and velocity
+        for (UInt i = 0; i < Vector::dim; ++i) {
+            if (delta_max[i] < 0) {
                 vel[i] *= -1;
                 pos[i] -= 2 * abs(delta_max[i]);
-            }
-            else if (delta_min[i] < 0)
-            {
+            } else if (delta_min[i] < 0) {
                 vel[i] *= -1;
                 pos[i] += 2 * abs(delta_min[i]);
             }
+            // check that particle's new position is inside the box
+            if (box_max[i] - pos[i] < 0 || pos[i] - box_min[i] < 0)
+                throw std::runtime_error("Particle position outside the bounding box!");
         }
-        // TODO: add an assertion error if the particle has been displaced outside the box
     }
 }
 
