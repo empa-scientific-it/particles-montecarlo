@@ -1,13 +1,7 @@
-#include "compute_verlet_integration.hh"
-#include "csv_reader.hh"
-#include "csv_writer.hh"
 #include "my_types.hh"
-#include "system.hh"
 #include "droplets_factory.hh"
-/* -------------------------------------------------------------------------- */
 #include <cstdlib>
 #include <iostream>
-#include <sstream>
 /* -------------------------------------------------------------------------- */
 
 int main(int argc, const char** argv) {
@@ -48,10 +42,10 @@ int main(int argc, const char** argv) {
   system_evolution.setNSteps(num_steps);
   system_evolution.setDumpFreq(dump_freq);
 
-    try {
-        system_evolution.evolve();
-        return EXIT_SUCCESS;
-    } catch (...) {
-        return EXIT_FAILURE;
-    }
+  try {
+      system_evolution.evolve();
+      return EXIT_SUCCESS;
+  } catch (...) {
+      return EXIT_FAILURE;
+  }
 }
