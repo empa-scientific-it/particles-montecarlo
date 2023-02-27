@@ -33,8 +33,8 @@ target_link_libraries(particles part)
 # Testing
 # need to link the test_XXX.cc to "libpart" AND to GTest
 # Examples:
-#add_executable(test_XXX test_XXX.cc)
-#target_link_libraries(test_XXX GTest::gtest_main part)
+add_executable(test_boundary test_boundary.cc)
+target_link_libraries(test_boundary GTest::gtest_main part)
 
 # Enable tests discovery
 #include(GoogleTest)
