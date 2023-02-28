@@ -6,16 +6,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib) # .dll, .so (shlib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib) # .a (static)
 
-# Add/enable GoogleTest library
-include(FetchContent)
-FetchContent_Declare(
-        googletest
-        GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG b796f7d44681514f58a683a3a71ff17c94edb0c1 # v1.13.0
-)
-FetchContent_MakeAvailable(googletest)
-enable_testing()
-
+# Build a (static) library
 add_library(part
         compute_boundary.cc
         droplets_factory.cc
@@ -25,17 +16,13 @@ add_library(part
         csv_reader.cc
         csv_writer.cc
         particle.cc
-        particles_factory_interface.cc)
+        particles_factory_interface.cc
+        compute_verlet_integration.cc)
 
+# Build/link main executable
 add_executable(particles main.cc)
 target_link_libraries(particles part)
 
-# Testing
-# need to link the test_XXX.cc to "libpart" AND to GTest
-# Examples:
-add_executable(test_boundary test_boundary.cc)
-target_link_libraries(test_boundary GTest::gtest_main part)
-
-# Enable tests discovery
-#include(GoogleTest)
-#gtest_discover_tests(test_XXX) # the target must be an executable known to CMake
+# Tests
+enable_testing()
+add_subdirectory(tests)
