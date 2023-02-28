@@ -17,7 +17,8 @@ add_library(part
         csv_writer.cc
         particle.cc
         particles_factory_interface.cc
-        compute_verlet_integration.cc)
+        compute_verlet_integration.cc
+        compute_evaporation.cc)
 
 # Build/link main executable
 add_executable(particles main.cc)
