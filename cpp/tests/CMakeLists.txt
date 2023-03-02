@@ -11,8 +11,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # need to link the test_XXX.cc to "libpart" AND to GoogleTest
-# FIXME: create and adjust the real test src file(s)!
-add_executable(gtest_run test_XXX.cc)
+add_executable(gtest_run test_boundary.cc)
 target_link_libraries(gtest_run gtest gtest_main part)
 
 # Enable tests discovery

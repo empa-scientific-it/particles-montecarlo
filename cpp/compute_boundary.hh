@@ -9,7 +9,7 @@
 class ComputeBoundary : public Compute {
   // Constructors/Destructors
 public:
-  ComputeBoundary(const Vector& xmin, const Vector& xmax);
+  ComputeBoundary(const Vector& box_min, const Vector& box_max);
 
   // Methods
 public:
@@ -17,7 +17,7 @@ public:
 
   // Members
 protected:
-  Vector xmin, xmax;
+  Vector box_min, box_max;
 };
 
 /* -------------------------------------------------------------------------- */
